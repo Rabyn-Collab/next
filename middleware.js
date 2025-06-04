@@ -1,14 +1,14 @@
-const { NextResponse } = require("next/server");
+export { default } from 'next-auth/middleware'
 
 
 
-
-const middleware = (request) => {
-
-  return NextResponse.next();
+export const config = {
+  matcher: [
+    '/dashboard',
+  ]
 };
 
 
 
 
-export default middleware;
+
