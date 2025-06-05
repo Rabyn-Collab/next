@@ -1,8 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import { User } from "../../../_models/User";
-import bcrypt from 'bcrypt'
 import connectToDB from "../../../_lib/db";
-
+import bcrypt from "bcrypt";
 
 
 export const options = {
@@ -20,26 +19,22 @@ export const options = {
         await connectToDB();
 
         const isExist = await User.findOne({ email: credentials.email });
+        console.log(isExist);
         if (!isExist) {
           return null;
         }
-        const pass = await bcrypt.compare(credentials.password, isExist.password);
-        if (!pass) {
-          return null;
-        }
-
-        const user = {
-          id: 1,
-          name: "John Doe",
-          email: 'rabyn@gmail.com',
-          password: 'testing'
+        // const pass = bcrypt.compareSync(credentials.password, isExist.password);
+        // if (!pass) {
+        //   return null;
+        // }
+        return {
+          id: isExist._id,
+          name: isExist.username,
+          email: isExist.email,
+          role: isExist.role
         };
-        if (credentials.email === user.email && credentials.password === user.password) {
-          return user;
-        }
-        return null;
-
       }
+
 
     })
 

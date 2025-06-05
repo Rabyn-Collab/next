@@ -1,6 +1,7 @@
 'use client';
-
 import { Formik } from 'formik';
+import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import React from 'react'
 
 export default function Page() {
@@ -15,8 +16,11 @@ export default function Page() {
           password: '',
         }}
 
-        onSubmit={(val) => {
-          console.log(val);
+        onSubmit={async (val) => {
+          await signIn('credentials', {
+            email: val.email,
+            password: val.password,
+          })
         }}
 
       >
@@ -46,8 +50,11 @@ export default function Page() {
         )}
       </Formik>
 
+      <h1>Don't have an account?</h1>
+      <Link href={'/auth/register'}>Register</Link>
 
 
-    </div>
+
+    </div >
   )
 }

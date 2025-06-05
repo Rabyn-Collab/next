@@ -1,4 +1,5 @@
-
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "../providers/authProvider";
 import "./globals.css";
 
 
@@ -13,12 +14,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
 
+        <AuthProvider>
 
-        {children}
+          {children}
 
+        </AuthProvider>
 
-
-
+        <Toaster toastOptions={{ duration: 1000 }} />
 
       </body>
     </html>

@@ -3,9 +3,8 @@ import Product from "../../_models/Product";
 
 
 
+export async function GET(req, { params }) {
 
-export async function GET(request, { params }) {
-  console.log(request.nextUrl.searchParams);
 
   try {
 

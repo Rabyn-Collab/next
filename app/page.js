@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import React from 'react'
+import { getServerSession } from 'next-auth';
 import { options } from './api/auth/[...nextauth]/options';
 
 
@@ -13,16 +13,19 @@ export const metadata = {
 
 export default async function Page() {
 
-  // const { user } = await getServerSession(options);
-  // console.log(user);
+  const user = await getServerSession(options);
+  console.log(user);
 
-  // const response = await axios.get('http://localhost:3000/api/products');
+  const response = await axios.get('http://localhost:3000/api/products');
 
-  // console.log(response.data);
+  console.log(response.data);
   return (
     <div>
 
+
+
       <Link href={'/dashboard'}>Dashboard</Link>
+
 
 
 
