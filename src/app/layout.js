@@ -1,5 +1,4 @@
-import { Toaster } from "react-hot-toast";
-import AuthProvider from "../providers/authProvider";
+
 import "./globals.css";
 
 
@@ -12,16 +11,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body
 
-        <AuthProvider>
-
-          {children}
-
-        </AuthProvider>
-
-        <Toaster toastOptions={{ duration: 1000 }} />
-
+      >
+        {children}
       </body>
     </html>
   );
