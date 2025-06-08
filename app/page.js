@@ -14,18 +14,17 @@ export const metadata = {
 export default async function Page() {
 
   const user = await getServerSession(options);
-  console.log(user);
+
 
   const response = await axios.get('http://localhost:3000/api/products');
 
-  console.log(response.data);
+
   return (
     <div>
 
 
 
       <Link href={'/dashboard'}>Dashboard</Link>
-
 
 
 
