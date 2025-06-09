@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { doc, updateDoc } from '@firebase/firestore';
 import { db } from '../utils/firebaseFirestore';
 export default function EditForm({ news }) {
+
   const router = useRouter();
   return (
     <div >
