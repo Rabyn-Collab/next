@@ -7,7 +7,9 @@ import React from 'react'
 import { useRouter } from 'next/navigation';
 import { doc, updateDoc } from '@firebase/firestore';
 import { db } from '../utils/firebaseFirestore';
-export default function EditForm({ news }) {
+export default function EditForm({ news, id }) {
+
+
 
   const router = useRouter();
   return (
@@ -21,7 +23,7 @@ export default function EditForm({ news }) {
         }}
         onSubmit={async (val) => {
           try {
-            await updateDoc(doc(db, 'news', news.id), val);
+            await updateDoc(doc(db, 'news', id), val);
             router.back();
           } catch (err) {
             console.log(err);

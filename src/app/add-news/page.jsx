@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import React from 'react'
 import { db } from '../../utils/firebaseFirestore';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 export default function Page() {
   const router = useRouter();
   return (
@@ -14,19 +15,31 @@ export default function Page() {
       <Formik
         initialValues={{
           title: '',
-          description: ''
+          description: '',
+          image: '',
         }}
         onSubmit={async (val) => {
-          try {
-            await addDoc(collection(db, 'news'), val);
-            router.back();
-          } catch (err) {
-            console.log(err);
+          const formData = new FormData();
+          formData.append('image', val.image);
 
+          try {
+            const response = await axios.post('http://localhost:3000/api/file-upload', formData);
+            addDoc(collection(db, 'news'), {
+              title: val.title,
+              image: response.data.image,
+              description: val.description
+            });
+            router.back();
+          } catch (error) {
+            console.log(error);
           }
+
+
+
+
         }}
       >
-        {({ values, handleChange, handleSubmit }) => (
+        {({ values, handleChange, handleSubmit, setFieldValue }) => (
           <form onSubmit={handleSubmit} className='space-y-5'>
             <div>
               <input
@@ -47,10 +60,19 @@ export default function Page() {
                 name='description' />
             </div>
 
+            <div>
+              <input
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setFieldValue('image', file);
+                }}
+                className='border border-black px-2 py-1' type="file" name='image' placeholder='Image' />
+            </div>
+
             <button type='submit'>Submit</button>
           </form>
         )}
       </Formik>
-    </div>
+    </div >
   )
 }
