@@ -27,7 +27,8 @@ export default function Page() {
             addDoc(collection(db, 'news'), {
               title: val.title,
               image: response.data.image,
-              description: val.description
+              description: val.description,
+              imageId: response.data.id
             });
             router.back();
           } catch (error) {

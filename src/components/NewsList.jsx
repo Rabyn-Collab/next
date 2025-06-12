@@ -41,7 +41,7 @@ export default function NewsList() {
               // onClick={() => router.push(`/update-news/${newsItem.id}?title=${newsItem.title}&description=${newsItem.description}`)}
               className='bg-green-400 px-2 py-1'>Edit News</button>
 
-            <DeleteNews id={newsItem.id} />
+            <DeleteNews id={newsItem.id} imageId={newsItem.imageId} />
           </div>
         </div>
       ))}
