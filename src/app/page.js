@@ -22,7 +22,7 @@ export default async function page({ searchParams }) {
           <p>{product.description}</p>
         </div>
       ))}
-      <Pagination totalPages={10} />
+      <Pagination totalPages={totalPages} />
 
     </div>
   )
