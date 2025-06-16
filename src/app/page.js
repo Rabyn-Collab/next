@@ -1,6 +1,7 @@
 import React from 'react'
 import Pagination from '../components/Pagination';
 import axios from 'axios';
+import Search from '../components/Search';
 
 export default async function page({ searchParams }) {
   const { page = 1 } = await searchParams;
@@ -15,6 +16,7 @@ export default async function page({ searchParams }) {
   //console.log(products);
   return (
     <div>
+      <Search />
       {products.map((product) => (
         <div key={product.id}>
           <img className='h-[100px]' src={product.thumbnail} alt="" />
