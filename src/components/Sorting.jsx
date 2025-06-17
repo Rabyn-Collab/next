@@ -15,7 +15,7 @@ export default function Sorting() {
       <Formik
         initialValues={{ sort: '' }}
         onSubmit={(values) => {
-          router.push(`${currentPath}?sortBy=${values.sort}`);
+          router.push(`${currentPath}?order=${values.sort}`);
         }}
 
       >
@@ -23,12 +23,12 @@ export default function Sorting() {
         {({ values, handleChange, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <select
-              className='border border-gray-300 rounded-md p-2 mr-2'
+              className=' border-gray-300 rounded-md p-2 mr-2'
               name="sort"
 
               onChange={(e) => {
                 console.log(e.target.value);
-                router.push(`${currentPath}?sortBy=${e.target.value}`);
+                router.push(`${currentPath}?order=${e.target.value}`);
 
               }}
             >

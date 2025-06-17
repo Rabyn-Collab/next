@@ -5,12 +5,12 @@ import Search from '../components/Search';
 import Sorting from '../components/Sorting';
 
 export default async function Page({ searchParams }) {
-  const { page = 1 } = await searchParams;
+  const { page = 1, order = 'asc' } = await searchParams;
   const currentPage = Number(page);
   const skip = (currentPage - 1) * 10;
   const limit = 10;
 
-  const response = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
+  const response = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${skip}&sortBy=title&order=${order}`);
   const products = response.data.products;
   const pages = Math.ceil(response.data.total / limit);
 
