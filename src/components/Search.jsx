@@ -18,7 +18,7 @@ export default function Search() {
         {({ values, handleChange }) => (
           <form onSubmit={() => router.push(`/search?q=${values.search}`)}>
             <input
-              className='border border-gray-300 rounded-md p-2 mr-2'
+              className='border-2 border-gray-300 rounded-md p-2 mr-2'
               type="text"
               name="search"
               placeholder="Search"
